@@ -168,18 +168,7 @@ jobs:
           uses: azure/setup-kubectl@v3
           with:
             version: 'v1.26.0'
-        - name: Create .kube Directory
-          run: mkdir -p $HOME/.kube
-    
-        - name: Decode and Write kubeconfig
-          run: echo ${{ secrets.KUBECONFIG }} > $HOME/.kube/config
-    
-        - name: Check kubeconfig
-          run: |
-              ls -al $HOME/.kube
-              cat $HOME/.kube/config
-              kubectl config view
-
+            
         - name: Set kubeconfig file
           uses: azure/k8s-set-context@v3
           with:
