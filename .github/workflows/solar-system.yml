@@ -163,11 +163,6 @@ jobs:
       steps:
         - name: Checkout Repo
           uses: actions/checkout@v4
-        - name: Run kubectl with Minikube in Docker Container
-          uses: docker/run-action@v3
-          with:
-            image: minikube/minikube:latest  # Use latest Minikube image
-            command: kubectl get nodes
         - name: Install kubectl CLI
           uses: azure/setup-kubectl@v3
           with:
