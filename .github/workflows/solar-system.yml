@@ -113,22 +113,20 @@ jobs:
         with:
           name: Code-Coverage-Result
           path: coverage
-          
           retention-days: 5 
           
-          - name: Generate coverage report
-          run: ./node_modules/.bin/nyc report --reporter=lcov
+      - name: Generate coverage report
+        run: ./node_modules/.bin/nyc report --reporter=lcov
     
-          - name: Setup SonarQube Scanner
-            uses: kitabisa/sonarqube-action@v1.1.0
-            with:
-              scanner-version: '4.6.2.2472'
-              host: ${{ secrets.SONAR_HOST_URL }}
-              token: ${{ secrets.SONAR_TOKEN }}
-      
-          - name: Run SonarQube Scanner
-            run: sonar-scanner -Dsonar.projectKey=hibatoarrahmen_solar-system -Dsonar.organization=hibatoarrahmen -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
-
+      - name: Setup SonarQube Scanner
+        uses: kitabisa/sonarqube-action@v1.1.0
+        with:
+          scanner-version: '4.6.2.2472'
+          host: ${{ secrets.SONAR_HOST_URL }}
+          token: ${{ secrets.SONAR_TOKEN }}
+    
+      - name: Run SonarQube Scanner
+        run: sonar-scanner -Dsonar.projectKey=hibatoarrahmen_solar-system -Dsonar.organization=hibatoarrahmen -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
     docker:
       needs: [unit-testing, code-coverage,code-analysis]
       runs-on: ubuntu-latest
