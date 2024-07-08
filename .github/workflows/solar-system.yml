@@ -114,7 +114,11 @@ jobs:
           name: Code-Coverage-Result
           path: coverage
           retention-days: 5 
-          
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'    
       - name: Generate coverage report
         run: ./node_modules/.bin/nyc report --reporter=lcov
     
