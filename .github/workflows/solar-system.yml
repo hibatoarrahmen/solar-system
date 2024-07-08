@@ -12,7 +12,7 @@ env:
   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
 
 jobs:
-    sonarcloud:
+    code-analysis:
       name: SonarCloud
       runs-on: ubuntu-latest
       steps:
@@ -117,7 +117,7 @@ jobs:
           retention-days: 5 
 
     docker:
-      needs: [unit-testing, code-coverage]
+      needs: [unit-testing, code-coverage,code-analysis]
       runs-on: ubuntu-latest
 
       steps:
