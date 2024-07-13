@@ -124,8 +124,11 @@ jobs:
 
         
       - name: Generate Trivy HTML report
-        run: trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" -o report.html hibaghrab/solar-system:8f40adf706ce8be00ab734bebc79942a387caea3
-        
+        run: |
+            docker images
+            docker info
+            trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" -o report.html hibaghrab/solar-system:8f40adf706ce8be00ab734bebc79942a387caea3
+            trivy --debug
 
       - name: Container Registry push
         uses: docker/build-push-action@v4
