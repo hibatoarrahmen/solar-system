@@ -125,7 +125,8 @@ jobs:
       - name: Download Trivy HTML template
         run: |
           wget -O /home/runner/work/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
-      
+      - name: Searching for html file
+        run: find / -name html.tpl
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
