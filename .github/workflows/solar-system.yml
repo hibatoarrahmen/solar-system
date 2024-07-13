@@ -133,7 +133,7 @@ jobs:
         with:
           image-ref: '${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
           format: 'template'
-          template: '@$GITHUB_WORKSPACE/templates/html.tpl'
+          template: '@/home/runner/work/solar-system/solar-system/templates/html.tpl'
           output: 'trivy-results.html'
 
           #vuln-type: 'os,library'
