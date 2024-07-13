@@ -112,13 +112,33 @@ jobs:
 
           echo Testing Image URL using wget
           wget -q -O - 127.0.0.1:3000/live | grep live
+
+      - name: Install dependencies
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y wget
+  
+      - name: Download Trivy HTML template
+        run: |
+            wget -O /usr/bin/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: '${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
-          format: 'table'
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          format: 'template'
+          template: '@/usr/bin/html.tpl'
+          output: 'trivy-results.html'
+
+          #vuln-type: 'os,library'
+          #severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-results
+          path: trivy-results.html
+
       - name: Container Registry push
         uses: docker/build-push-action@v4
         with:
