@@ -120,20 +120,20 @@ jobs:
   
       
       - name: Create directory for template
-        run: mkdir -p /home/runner/work/templates
+        run: mkdir -p /home/runneradmin/work/templates
 
       - name: Download Trivy HTML template
         run: |
-          wget -O /home/runner/work/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+          wget -O /home/runneradmin/work/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
       - name: Searching for html file
-        run: find / -name html.tpl
+        run: sudo find / -name html.tpl
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: '${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
           format: 'template'
-          template: '@/home/runner/work/templates/html.tpl'
+          template: '@/home/runneradmin/work/templates/html.tpl'
           output: 'trivy-results.html'
 
           #vuln-type: 'os,library'
