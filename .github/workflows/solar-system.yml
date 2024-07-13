@@ -113,11 +113,13 @@ jobs:
           echo Testing Image URL using wget
           wget -q -O - 127.0.0.1:3000/live | grep live
 
-     
-  
-      
+      - name: Install Trivy
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y trivy
+        
       - name: Generate Trivy HTML report
-        run: trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" -o report.html ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+        run: trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" -o report.html hibaghrab/solar-system:8f40adf706ce8be00ab734bebc79942a387caea3
         
 
       - name: Container Registry push
