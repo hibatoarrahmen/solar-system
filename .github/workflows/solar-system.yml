@@ -126,17 +126,16 @@ jobs:
         run: |
           wget -O /home/runner/work/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
   
-      - name: List files in template directory
-        run: ls -la /home/runner/work/templates
-    
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-            image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-            format: 'template'
-            template: '@/home/runner/work/templates/html.tpl'
-            output: 'trivy-results.html'
-        
+          image-ref: '${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
+          format: 'template'
+          template: '@/home/runner/work/templates/html.tpl'
+          output: 'trivy-results.html'
+
+          #vuln-type: 'os,library'
+          #severity: 'CRITICAL,HIGH'
 
       - name: Upload Trivy scan results as artifact
         uses: actions/upload-artifact@v3
