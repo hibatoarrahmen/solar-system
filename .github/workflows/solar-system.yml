@@ -126,8 +126,8 @@ jobs:
         run: |
           wget -O /home/runner/work/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
   
-          - name: List files in template directory
-          run: ls -la /home/runner/work/templates
+      - name: List files in template directory
+        run: ls -la /home/runner/work/templates
     
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
