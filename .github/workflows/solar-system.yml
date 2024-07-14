@@ -121,7 +121,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install trivy
 
-
         
       - name: Generate Trivy HTML report
         run: |
@@ -130,6 +129,13 @@ jobs:
             trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" -o report.html ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
             trivy --debug
 
+      - name: Upload Trivy HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: Trivy-HTML-Report
+          path: report.html
+
+          
       - name: Container Registry push
         uses: docker/build-push-action@v4
         with:
