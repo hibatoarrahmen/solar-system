@@ -123,7 +123,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
             image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
-            template: '/usr/local/share/trivy/templates/html.tpl'  
+            template: '@/usr/local/share/trivy/templates/html.tpl'  
             format: 'template'
             output: 'trivy-results.html'
         
