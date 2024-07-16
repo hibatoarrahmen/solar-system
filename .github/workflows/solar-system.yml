@@ -112,7 +112,10 @@ jobs:
 
           echo Testing Image URL using wget
           wget -q -O - 127.0.0.1:3000/live | grep live
-      
+      - name: List Files for Debugging
+        run: |
+            echo "Listing files for debugging:"
+            ls -R
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -121,13 +124,14 @@ jobs:
             ignore-unfixed: true
             vuln-type: 'os,library'
             format: 'template'
-            template: '@/github/workspace/software/trivy/templates/html.tpl'
+            template: '@/github/workspace/html.tpl'
             output: 'trivy-results.html'
             severity: 'CRITICAL,HIGH'
-      - name: check files 
+            
+      - name: Check Files
         run: |
-            ls -l html.tpl
-
+              echo "Checking template file:"
+              ls -l /github/workspace/html.tpl
 
       
 
