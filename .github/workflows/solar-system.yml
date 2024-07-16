@@ -118,6 +118,8 @@ jobs:
                 curl -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
       - name: Find Trivy Template
         run: |
+              sudo apt-get update && sudo apt-get install -y mlocate
+                locate html.tpl
                      cat ./html.tpl
       - name: Set up Trivy
         uses: aquasecurity/trivy-action@master
