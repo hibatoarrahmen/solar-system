@@ -123,7 +123,11 @@ jobs:
             image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
             template: './template.tpl'  # Path relative to the workspace
       
-      
+      - name: Upload Trivy scan results as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-results
+          path: trivy-results.html
 
           
       - name: Container Registry push
