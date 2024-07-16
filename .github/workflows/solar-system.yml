@@ -122,7 +122,7 @@ jobs:
              locate html.tpl
         
       - name: Check Permissions of Trivy Template
-        run: ls -l /software/trivy/templates/html.tpl
+        run: ls -l /home/runner/work/solar-system/solar-system/software/trivy/templates/html.tpl
           
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
