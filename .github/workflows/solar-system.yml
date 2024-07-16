@@ -116,6 +116,11 @@ jobs:
         run: |
             mkdir -p software/trivy/templates
             curl -o software/trivy/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+      - name: Find Trivy Template
+        run: find /github/workspace -name 'html.tpl'
+      - name: Check Permissions of Trivy Template
+        run: ls -l /software/trivy/templates/html.tpl
+          
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
