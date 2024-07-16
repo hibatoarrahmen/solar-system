@@ -124,7 +124,11 @@ jobs:
             template: '@/github.workspace/html.tpl'
             output: 'trivy-results.html'
             severity: 'CRITICAL,HIGH'
-  
+      - name: check files 
+        run: |
+            ls -l html.tpl
+
+
       
 
           
