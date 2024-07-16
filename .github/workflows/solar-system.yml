@@ -132,7 +132,7 @@ jobs:
             ignore-unfixed: true
             vuln-type: 'os,library'
             format: 'template'
-            template: '@/software/trivy/templates/html.tpl'
+            template: '@/home/runner/work/solar-system/solar-system/software/trivy/templates/html.tpl'
             output: 'trivy-results.html'
             severity: 'CRITICAL,HIGH'
 
