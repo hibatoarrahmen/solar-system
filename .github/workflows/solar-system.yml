@@ -112,7 +112,10 @@ jobs:
 
           echo Testing Image URL using wget
           wget -q -O - 127.0.0.1:3000/live | grep live
-
+      - name: Download Trivy HTML template
+        run: |
+            mkdir -p .github/workspace
+            wget -O .github/workspace/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
