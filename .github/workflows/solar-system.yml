@@ -115,15 +115,15 @@ jobs:
 
       - name: Download Trivy template file
         run: |
-                curl -o /usr/local/share/trivy/templates/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+                curl -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
       - name: Find Trivy Template
         run: |
-                     cat /usr/local/share/trivy/templates/html.tpl
+                     cat ./html.tpl
       - name: Set up Trivy
         uses: aquasecurity/trivy-action@master
         with:
             image-ref: 'docker.io/${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}'
-            template: '@/usr/local/share/trivy/templates/html.tpl'  
+            template: '@./html.tpl'  
             format: 'template'
             output: 'trivy-results.html'
         
