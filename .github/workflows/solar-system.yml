@@ -115,7 +115,7 @@ jobs:
 
       - name: Download Trivy template file
         run: |
-                curl -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/sample-templates/html.tpl
+                curl -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
       - name: Find Trivy Template
         run: |
                      cat ${{ github.workspace }}/html.tpl
