@@ -124,7 +124,7 @@ jobs:
             ignore-unfixed: true
             vuln-type: 'os,library'
             format: 'template'
-            template: '@/github.workspace/html.tpl'
+            template: '@github.workspace/html.tpl'
             output: 'trivy-results.html'
             severity: 'CRITICAL,HIGH'
       - name: check files 
